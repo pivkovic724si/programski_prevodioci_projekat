@@ -1,0 +1,47 @@
+
+inventory: item1,item2
+
+scene ime_scene:
+    prior scene = ime_prethodne_scene || null  //null znaci da je ovo prva scena
+    next scene = ime_sledece_scene || null  //ako je null, ova scena vodi do endinga
+
+    states: ime_stanja = netacno, kidnapovan = netacno   //stanja koja koristimo kao neke uslove
+
+    location lokacija1{
+            prior location = ime_prethodne_lokacije || null //null == ista ova lokacija je prethodna
+            next location = ime_sledece_lokacije || null //null == ista ova lokacija je sledeca
+
+            scenario merchant{    //npr, kupovina kod prodavca, te ime scenarija merchant
+                text ""Dobrodosli dobrodosli!" rece ni malo sumnjivi prodavac. Izgleda da ti nudi stvari za prodaju"
+                choice "Kupi bananu":
+                    add banana
+                    go ime_lokacije //ili scene ili scenarija
+                choice "Kupi mac":
+                    add sword
+                    go null  //ne sme biti null
+                choice "Predaj medaljon" if has medaljon:               // opcija se pojavljuje samo ako igrac ispunjava uslov (u ovom slucaju da ima odredjeni item)
+                    go tajni_podrum
+                choice "Vrati se u sumu":
+
+            }
+            scenario tajni_podrum{
+                text "Ispred tebe se nalazi dragulj za kojim tragas od pocetka avanture."
+                choice "Pokupi dragulj":
+                    add dragulj
+                    go sruseni_podrum
+                choice "Pokupi dragulj i zameni ga sa kamenom" if has kamen:
+                    add dragulj
+                    The end
+            }
+            scenario sruseni_podrum{
+                ...
+            }
+            scenario suma{
+               ...
+            }
+
+            if kidnapovan start scenario = neka_lokacija
+            else start scenario = suma
+    }
+    start location = lokacija1
+
