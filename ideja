@@ -40,8 +40,8 @@ scene ime_scene:
                ...
             }
 
-            if kidnapovan start scenario = neka_lokacija
-            else start scenario = suma
+            if kidnapovan: start scenario = neka_lokacija
+            else: start scenario = suma
     }
     start location = lokacija1
 
