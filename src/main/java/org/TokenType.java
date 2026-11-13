@@ -1,4 +1,4 @@
-package org.example;
+package org;
 
 enum TokenType {
 
@@ -16,7 +16,7 @@ enum TokenType {
     //keywords
     AND, IF, ELSE, TEXT, OR, NIL, TRUE, FALSE,
     SCENE, LOCATION, SCENARIO, CHOICE, INVENTORY, STATS,
-    HP, ADD, GO, HAS, START,
+    HP, ADD, GO, HAS, START, END, STATES, NEXT, PREV,
 
     EOF
 }

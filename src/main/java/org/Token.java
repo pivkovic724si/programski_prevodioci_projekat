@@ -1,4 +1,4 @@
-package org.example;
+package org;
 
 class Token {
      final TokenType type;

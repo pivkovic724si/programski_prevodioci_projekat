@@ -2,14 +2,13 @@
 inventory: item1,item2
 
 scene ime_scene:
-    prior scene = ime_prethodne_scene || null  //null znaci da je ovo prva scena
-    next scene = ime_sledece_scene || null  //ako je null, ova scena vodi do endinga
+    next scene = ime_sledece_scene || null  //ako je null, next vodi do endinga
 
     states: ime_stanja = netacno, kidnapovan = netacno   //stanja koja koristimo kao neke uslove
 
     location lokacija1{
-            prior location = ime_prethodne_lokacije || null //null == ista ova lokacija je prethodna
-            next location = ime_sledece_lokacije || null //null == ista ova lokacija je sledeca
+            prev location = ime_prethodne_lokacije || null //default null == ista ova lokacija je prethodna
+            next location = ime_sledece_lokacije || null //default null == zavrsi se lokacija
 
             scenario merchant{    //npr, kupovina kod prodavca, te ime scenarija merchant
                 text ""Dobrodosli dobrodosli!" rece ni malo sumnjivi prodavac. Izgleda da ti nudi stvari za prodaju"
@@ -31,7 +30,7 @@ scene ime_scene:
                     go sruseni_podrum
                 choice "Pokupi dragulj i zameni ga sa kamenom" if has kamen:
                     add dragulj
-                    The end
+                    next location || scene  // zavrsi se prica ako nema sledeceg
             }
             scenario sruseni_podrum{
                 ...

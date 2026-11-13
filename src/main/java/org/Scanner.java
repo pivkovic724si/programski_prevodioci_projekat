@@ -1,11 +1,11 @@
-package org.example;
+package org;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static org.example.TokenType.*;
+import static org.TokenType.*;
 
 class Scanner {
     private final String source;
@@ -39,6 +39,10 @@ class Scanner {
         keywords.put("scene", SCENE);
         keywords.put("location", LOCATION);
         keywords.put("scenario", SCENARIO);
+        keywords.put("end",END);
+        keywords.put("states",STATES);
+        keywords.put("next",NEXT);
+        keywords.put("prev",PREV);
 
     }
 
